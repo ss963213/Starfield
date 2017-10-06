@@ -1,8 +1,8 @@
-NormalParticle [] Scott;
+Particle [] Scott;
 void setup()
 {
 	size(500,500);
-Scott=new NormalParticle[5000];
+Scott=new Particle[5000];
 for(int i=0; i<Scott.length;i++)
 Scott[i]= new NormalParticle();
 }
@@ -14,18 +14,18 @@ void draw()
  Scott[i].move();
  }
 }
-class NormalParticle
+class NormalParticle implements Particle
 {
   double myX=250;
   double myY=250;
   double speed=(Math.random()*15)+10;
   double angle=Math.PI*(Math.random()*2);
-  void show()
+  public void show()
   {
     ellipse((float)myX,(float)myY,5,5);
     
   }
-  void move()
+  public void move()
   {
     myX=myX+speed*Math.cos(angle);
     myY=myY+speed*Math.sin(angle);
@@ -40,11 +40,20 @@ class NormalParticle
 
 interface Particle
 {
-	//your code here
+	public void show();
+public void move();
 }
-class OddballParticle //uses an interface
-{
-	//your code here
+class OddballParticle implements Particle
+{double myX=250;
+  double myY=250;
+  double speed=(Math.random()*15)+10;
+  double angle=Math.PI*(Math.random()*2);
+	public void show(){
+  for(int i=0;i<8;i++)
+  ellipse((float)myX,(float)myY,5,5);
+}
+public void move(){
+}
 }
 class JumboParticle //uses inheritance
 {
